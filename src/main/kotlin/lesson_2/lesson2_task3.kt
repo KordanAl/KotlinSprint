@@ -1,5 +1,7 @@
 package org.example.lesson_2
 
+const val MINUTES_IN_HOUR = 60
+
 fun main() {
     val timeOfDeparture: String = "9:39"
     val travelTime: Int = 457
@@ -11,10 +13,10 @@ fun main() {
 
 fun calculateArrivalTime(timeOfDeparture: String, travelTime: Int): Pair<Int, Int> {
     val (depHours, depMinutes) = timeOfDeparture.split(":").map { it.toInt() }
-    val totalMinutes = depHours * 60 + depMinutes + travelTime
+    val totalMinutes = depHours * MINUTES_IN_HOUR + depMinutes + travelTime
 
-    val arrivalHours = totalMinutes / 60
-    val arrivalMinutes = totalMinutes % 60
+    val arrivalHours = totalMinutes / MINUTES_IN_HOUR
+    val arrivalMinutes = totalMinutes % MINUTES_IN_HOUR
 
     return Pair(arrivalHours, arrivalMinutes)
 }
