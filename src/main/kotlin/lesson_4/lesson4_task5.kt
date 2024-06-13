@@ -1,19 +1,29 @@
 package org.example.lesson_4
 
-const val CASE_NO_DAMAGE = "true"
-const val FAVORABLE_CONDITIONS = "true"
+const val CASE_DAMAGE: String = "false"
+const val FAVORABLE_CONDITIONS: String = "true"
+const val BOXES_OF_PROVISIONS: Int = 50
+const val MIN_CREWS: Int = 50
+const val MAX_CREWS: Int = 70
 
 fun main() {
 
     val сaseCondition = getCaseCondition()
     val сrewComposition = getCrewComposition()
     val boxesOfProvisionsOnBoard = getBoxesOfProvisionsOnBoard()
-    val wather = getWeather()
+    val weather = getWeather()
 
-    if((сaseCondition == CASE_NO_DAMAGE || сaseCondition != CASE_NO_DAMAGE )
-        && (сrewComposition in 55..70)
-        && (boxesOfProvisionsOnBoard!! > 50)
-        && (wather == FAVORABLE_CONDITIONS) ) {
+    if ((сaseCondition == CASE_DAMAGE) &&
+        (сrewComposition in MIN_CREWS..MAX_CREWS) &&
+        (boxesOfProvisionsOnBoard > BOXES_OF_PROVISIONS) &&
+        (weather == FAVORABLE_CONDITIONS)
+    ) {
+        println("Корабль может отправится в плаванье")
+    } else if ((сaseCondition != CASE_DAMAGE) &&
+        (сrewComposition == MAX_CREWS) &&
+        (boxesOfProvisionsOnBoard >= BOXES_OF_PROVISIONS) &&
+        (weather == FAVORABLE_CONDITIONS)
+    ) {
         println("Корабль может отправится в плаванье")
     } else {
         println("Корабль не может отправится в плаванье")
@@ -21,26 +31,26 @@ fun main() {
 
 }
 
-fun getCaseCondition () : String? {
+fun getCaseCondition(): String {
     println("Наличие повреждений корпуса: true or false")
-    return readLine()
+    return readln()
 
 }
 
-fun getCrewComposition () : Int? {
+fun getCrewComposition(): Int {
     println("Tекущий состав экипажа:")
-    return readLine()?.toInt()
+    return readln().toInt()
 
 }
 
-fun getBoxesOfProvisionsOnBoard () : Int? {
+fun getBoxesOfProvisionsOnBoard(): Int {
     println("Количество ящиков с провизией на борту:")
-    return readLine()?.toInt()
+    return readln().toInt()
 
 }
 
-fun getWeather () : String? {
+fun getWeather(): String {
     println("Благоприятность метеоусловий: true or false")
-    return readLine()
+    return readln()
 
 }
