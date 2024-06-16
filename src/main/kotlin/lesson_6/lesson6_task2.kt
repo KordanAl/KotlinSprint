@@ -6,7 +6,7 @@ fun main() {
 
     val originalSeconds = userSeconds
 
-    while (userSeconds >= 0) {
+    while (userSeconds > 0) {
         userSeconds--
         Thread.sleep(1000)
     }
