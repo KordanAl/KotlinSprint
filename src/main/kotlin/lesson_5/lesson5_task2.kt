@@ -8,7 +8,7 @@ fun main() {
 
     println("Введите свой год рождения:")
 
-    val userRestriction = readLine()!!.toInt()
+    val userRestriction = readln().toInt()
 
     if (userRestriction <= yearOfMajority) {
         println("Показать экран со скрытым контентом")
