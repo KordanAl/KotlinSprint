@@ -1,7 +1,6 @@
 package org.example.lesson_6
 
 fun main() {
-
     println("Сколько секунд необходимо засечь?")
     var userSeconds: Int = readln().toInt()
 
@@ -12,5 +11,4 @@ fun main() {
         Thread.sleep(1000)
     }
     println("Прошло $originalSeconds секунд")
-
 }
