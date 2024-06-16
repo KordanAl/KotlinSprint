@@ -7,7 +7,7 @@ fun main() {
 
     val originalSeconds = userSeconds
 
-    while (userSeconds >= 0) {
+    while (userSeconds > 0) {
         println("Осталось секунд: ${userSeconds--}")
         Thread.sleep(1000)
     }
