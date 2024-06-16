@@ -6,9 +6,9 @@ fun main() {
 
     val originalSeconds = userSeconds
 
-    while (userSeconds > 0) {
-        userSeconds--
+    while (userSeconds >= 0) {
         Thread.sleep(1000)
+        userSeconds--
     }
     println("Прошло $originalSeconds секунд")
 }
