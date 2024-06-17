@@ -5,18 +5,15 @@ fun main() {
     var login: String = ""
     var password: String = ""
 
-    while (!registration) {
-        println("Введите логин, чтобы зарегестрироваться:")
-        login = readln()
+    println("Введите логин, чтобы зарегестрироваться:")
+    login = readln()
 
-        println("Введите пароль, чтобы зарегестрироваться:")
-        Thread.sleep(1000)
-        password = readln()
+    println("Введите пароль, чтобы зарегестрироваться:")
+    Thread.sleep(1000)
+    password = readln()
 
-        println("Регистрация завершена.")
-        Thread.sleep(1000)
-        registration = true
-    }
+    println("Регистрация завершена.")
+    Thread.sleep(1000)
 
     var loggedIn: Boolean = false
     var inputUsername: String = ""
