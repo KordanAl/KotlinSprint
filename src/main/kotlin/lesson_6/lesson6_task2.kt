@@ -1,14 +1,14 @@
 package org.example.lesson_6
 
+const val MILLISECONDS: Long = 1000L
+
 fun main() {
+
     println("Сколько секунд необходимо засечь?")
-    var userSeconds: Int = readln().toInt()
 
-    val originalSeconds = userSeconds
+    val userSeconds: Int = readln().toInt()
+    Thread.sleep(userSeconds * MILLISECONDS)
 
-    while (userSeconds > 0) {
-        userSeconds--
-        Thread.sleep(1000)
-    }
-    println("Прошло $originalSeconds секунд")
+    println("Прошло $userSeconds секунд")
+
 }
