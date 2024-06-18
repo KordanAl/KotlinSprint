@@ -9,7 +9,7 @@ fun main() {
     val upLetters: CharRange = 'A'..'Z'
     val numbers: IntRange = 0..9
 
-    var numberOfPassword: Int = 0
+    var numberOfPassword: Int
 
     do {
         println("Для генерации пароля введите количество символов(не менее $MIN_LENGTH_PASSWORD): ")
@@ -24,7 +24,7 @@ fun main() {
     } while (true)
 
     val allChars = letters + upLetters + numbers
-    var password: String = ""
+    var password = ""
     var randomChar: String
 
     // Добавляем 3 разных вида символа в пароль, чтобы в коде были все 3 вида символов
