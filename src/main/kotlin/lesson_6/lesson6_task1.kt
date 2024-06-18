@@ -1,7 +1,6 @@
 package org.example.lesson_6
 
 fun main() {
-
     println("Введите логин, чтобы зарегестрироваться:")
     val login: String = readln()
 
