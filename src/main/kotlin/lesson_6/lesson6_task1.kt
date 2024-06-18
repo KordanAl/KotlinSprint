@@ -1,23 +1,20 @@
 package org.example.lesson_6
 
 fun main() {
-    var registration: Boolean = false
-    var login: String = ""
-    var password: String = ""
 
     println("Введите логин, чтобы зарегестрироваться:")
-    login = readln()
+    val login: String = readln()
 
     println("Введите пароль, чтобы зарегестрироваться:")
     Thread.sleep(1000)
-    password = readln()
+    val password: String = readln()
 
     println("Регистрация завершена.")
     Thread.sleep(1000)
 
     var loggedIn: Boolean = false
-    var inputUsername: String = ""
-    var inputPassword: String = ""
+    var inputUsername: String
+    var inputPassword: String
 
     while (!loggedIn) {
         println("\nВведите ваш логин: ")
