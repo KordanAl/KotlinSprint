@@ -17,11 +17,10 @@ fun main() {
 
         if (numberOfPassword >= MIN_LENGTH_PASSWORD) {
             print("Ваш пароль: ")
-            break
         } else {
             println("Ошибка, длина пароля должна быть не менее $MIN_LENGTH_PASSWORD символов.")
         }
-    } while (true)
+    } while (numberOfPassword < MIN_LENGTH_PASSWORD)
 
     val allChars = letters + upLetters + numbers
     var password = ""
@@ -37,5 +36,8 @@ fun main() {
         password += randomChar
     }
 
-    println(password)
+    val mixPassword = password.toList().shuffled().joinToString("")
+
+    println(mixPassword)
+
 }
