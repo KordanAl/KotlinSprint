@@ -19,9 +19,10 @@ fun main() {
                 .toMutableList()
 
         if (ingredients.size != QUANTITY_OF_INGREDIENTS) {
-            println("Ошибка! Введите ровно 5 ингредиентов, разделяя их запятыми и пробелом.")
+            println("Ошибка! Введите ровно 5 ингредиентов, разделяя их запятыми и пробелом:")
         } else {
             println("Вы ввели следующие ингредиенты: ")
+            break
         }
     } while (ingredients.size != QUANTITY_OF_INGREDIENTS)
 
