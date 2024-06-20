@@ -7,23 +7,26 @@ fun main() {
     println("Список ингредиентов: ${ingredients.joinToString()}")
 
     var toReplace: String
+    var indexToReplace: Int
 
     do {
         println("Какой ингредиент вы хотите заменить? ")
         toReplace = readln().replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
 
-        if (toReplace !in ingredients) {
+        indexToReplace = ingredients.indexOf(toReplace)
+
+        if (indexToReplace == -1) {
             println("Ингредиент не найден в списке.")
 
         } else {
             println("На что вы хотите заменить ингредиент \"$toReplace\"? ")
             break
         }
-    } while (toReplace !in ingredients)
+    } while (true)
 
     val replacement = readln().replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
 
-    ingredients[ingredients.indexOf(toReplace)] = replacement
+    ingredients[indexToReplace] = replacement
 
     println("Готово! Вы сохранили следующий список: ${ingredients.joinToString()}")
 
