@@ -21,6 +21,6 @@ fun main() {
 
     ingredients = ingredients.sorted().toMutableList()
 
-    println(ingredients.joinToString())
+    println("${ingredients.joinToString().replaceFirstChar { it.titlecase() }}.")
 
 }
