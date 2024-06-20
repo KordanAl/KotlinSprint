@@ -10,10 +10,10 @@ fun main() {
     println("Желаете добавить еще?")
     val addIngredient = readln()
 
-    if (addIngredient.replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() } != "Да") return
+    if (addIngredient.lowercase() != "да") return
     else println("Какой ингредиент вы хотите добавить?")
 
-    val inputOfIngredient = readln().replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
+    val inputOfIngredient = readln().replaceFirstChar { it.titlecase() }
 
     basicMutableList.add(inputOfIngredient)
 
