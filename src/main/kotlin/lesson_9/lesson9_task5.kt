@@ -17,8 +17,6 @@ fun main() {
         }
         ingredients.add(inputIngredient)
     }
-
-    val sortedIngredients = ingredients.sorted()
-    println("Ингредиенты: ${sortedIngredients.joinToString().replaceFirstChar { it.titlecase() }}.")
+    println("Ингредиенты: ${ingredients.sorted().joinToString().replaceFirstChar { it.titlecase() }}.")
 
 }
