@@ -4,7 +4,7 @@ fun main() {
 
     println("Введите 5 названий ингредиентов, которые не повторяются.")
 
-    val ingredients: MutableSet<String> = mutableSetOf()
+    val ingredients: MutableList<String> = mutableListOf()
     var inputIngredient: String
 
     while (ingredients.size < 5) {
