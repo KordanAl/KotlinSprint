@@ -15,7 +15,6 @@ fun main() {
             println("Ошибка! Вы не ввели название или ингридиент повторяется. Пожалуйста, попробуйте снова.")
             continue
         }
-
         ingredients.add(inputIngredient)
     }
 
