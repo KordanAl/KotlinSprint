@@ -1,35 +1,25 @@
 package org.example.lesson_9
 
-const val FIRST_INGREDIENT: Byte = 1
-const val QUANTITY_OF_INGREDIENTS: Byte = 5
-
 fun main() {
 
-    println("Введите $QUANTITY_OF_INGREDIENTS названий ингредиентов:")
+    println("Введите 5 названий ингредиентов, которые не повторяются.")
 
     val ingredients: MutableSet<String> = mutableSetOf()
+    var inputIngredient: String
 
-    (FIRST_INGREDIENT..QUANTITY_OF_INGREDIENTS).forEach {
-        print("Введите название ингредиента $it: ")
-        var inputIngredient = readln()
+    while (ingredients.size < 5) {
+        print("Введите название ингредиента ${ingredients.size + 1}: ")
+        inputIngredient = readln().lowercase()
 
-        while (inputIngredient.isBlank() || ingredients.contains(inputIngredient)) {
-            if (inputIngredient.isBlank()) {
-                println("Название ингредиента не может быть пустым. Пожалуйста, попробуйте снова.")
-            } else {
-                println("Этот ингредиент уже был введен. Пожалуйста, введите другой ингредиент.")
-            }
-            print("Введите название ингредиента $it: ")
-            inputIngredient = readln()
+        if (inputIngredient.isBlank() || ingredients.contains(inputIngredient)) {
+            println("Ошибка! Вы не ввели название или ингридиент повторяется. Пожалуйста, попробуйте снова.")
+            continue
         }
-        ingredients.add(inputIngredient.lowercase())
+
+        ingredients.add(inputIngredient)
     }
 
     val sortedIngredients = ingredients.sorted()
-    println("Ингредиенты: ${
-        sortedIngredients.joinToString().replaceFirstChar {
-            if (it.isLowerCase()) it.titlecase() else it.toString()
-        }
-    }.")
+    println("Ингредиенты: ${sortedIngredients.joinToString().replaceFirstChar { it.titlecase() }}.")
 
 }
