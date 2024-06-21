@@ -11,9 +11,11 @@ fun main() {
     """.trimIndent()
     )
 
-    if (playerResult > computerResult) println("Победило человечество!")
-    else if (computerResult > playerResult) println("Победила машина!")
-    else println("Ничья! Попробуйте еще раз.")
+    when {
+        playerResult > computerResult -> println("Победило человечество!")
+        computerResult > playerResult -> println("Победила машина!")
+        else -> println("Ничья! Попробуйте еще раз.")
+    }
 }
 
 fun rollDice() = (1..6).random()
