@@ -17,11 +17,11 @@ fun main() {
         if (playerResult > computerResult) {
             println("Победило человечество!")
             roundsWon++
-        } else if (computerResult > playerResult) {
+        } else if (computerResult > playerResult)
             println("Победила машина!")
-        } else {
+        else
             println("Ничья! Попробуйте еще раз.")
-        }
+
         playing = getPlayRound()
     }
     println("Игра окончена. Вы выиграли рундов: $roundsWon")
@@ -30,7 +30,8 @@ fun main() {
 fun getPlayRound(): Boolean {
     println("Хотите сыграть еще один раунд?")
     val round: String = readln()
-    if (round.lowercase() == "да") println("Новый раунд!")
+    if (round.lowercase() == "да")
+        println("Новый раунд!")
     return round.lowercase() == "да"
 }
 
