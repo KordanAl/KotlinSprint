@@ -9,16 +9,12 @@ fun main() {
     while (ingredients.size < 5) {
         print("Введите название ингредиента ${ingredients.size + 1}: ")
         inputIngredient = readln().lowercase()
-        ingredients += inputIngredient
-
-//     Я ЗАПУТАЛСЯ, НЕ ПОЙМУ ЧТО НУЖНО
 
         if (inputIngredient.isBlank()) {
-            println("Ошибка! Вы не ввели название или ингридиент повторяется. Пожалуйста, попробуйте снова.")
+            println("Ошибка! Вы не ввели название ингридиента. Пожалуйста, попробуйте снова.")
             continue
         }
         ingredients.add(inputIngredient)
     }
-
     println("Ингредиенты: ${ingredients.sorted().joinToString().replaceFirstChar { it.titlecase() }}.")
 }
