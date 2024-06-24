@@ -1,8 +1,8 @@
 package org.example.lesson_10
 
 fun main() {
-    val playerResult: Int = rollDice()
-    val computerResult: Int = rollDice()
+    val playerResult: Int = rollDice1()
+    val computerResult: Int = rollDice1()
     println(
         """
         Давайте поиграем в кости! Кто выбросит большее число, тот и победил.
@@ -18,4 +18,4 @@ fun main() {
     }
 }
 
-fun rollDice() = (1..6).random()
+fun rollDice1() = (1..6).random()
