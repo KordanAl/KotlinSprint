@@ -1,10 +1,12 @@
+@file:JvmName("User2Kt")
+
 package org.example.lesson_11
 
 class User2(
     val login: String,
     var password: String,
     val email: String,
-    var bio: Boolean = false,
+    var bio: String? = null
 ) {
     fun userDataOutput() {
         println(
@@ -19,7 +21,7 @@ class User2(
 
     fun updateBio() {
         println("Введи значение, которые ты хочешь записать в bio: ")
-        bio = readln().toBoolean()
+        bio = readln()
         println("Значение bio теперь - $bio.")
     }
 
@@ -59,7 +61,7 @@ fun main() {
         login = "DankorAL",
         password = "DankorALaroknad",
         email = "DankorAL.gmail.com",
-        bio = true
+        bio = "eyes"
     )
 
     println()
