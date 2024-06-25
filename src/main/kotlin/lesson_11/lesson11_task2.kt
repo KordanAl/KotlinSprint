@@ -1,5 +1,3 @@
-@file:JvmName("User2Kt")
-
 package org.example.lesson_11
 
 class User2(
