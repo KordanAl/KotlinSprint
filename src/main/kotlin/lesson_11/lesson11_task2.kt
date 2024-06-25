@@ -1,16 +1,57 @@
 package org.example.lesson_11
 
+class User2(
+    val login: String,
+    var password: String,
+    val email: String,
+    var bio: Boolean = false,
+) {
+    fun userDataOutput() {
+        println(
+            """
+            Данные пользователя $login: 
+            login: $login
+            password: $password
+            email: $email
+            """.trimIndent(),
+        )
+    }
+
+    fun updateBio() {
+        println("Введи значение, которые ты хочешь записать в bio: ")
+        bio = readln().toBoolean()
+        println("Значение bio теперь - $bio.")
+    }
+
+    fun changePassword() {
+        println("Введите пожалуйста текущий пароль: ")
+        var input = ""
+
+        while (input != password) {
+            input = readln()
+            if (input == password) {
+                println("Успешно! Введите пожалуйста новый пароль:")
+                val newPassword = readln()
+                password = newPassword
+                println("Новый пароль успешно изменен!")
+                break
+            } else {
+                println("Пароль введен неверно, повторите попытку: ")
+            }
+        }
+    }
+}
+
 fun main() {
 
     val user = User2(
         login = "userOne",
         password = "userOne123456",
         email = "userOne.gmail.com",
-        bio = "-"
     )
 
     user.userDataOutput()
-    user.getBio()
+    user.updateBio()
     println()
     user.changePassword()
 
@@ -18,7 +59,7 @@ fun main() {
         login = "DankorAL",
         password = "DankorALaroknad",
         email = "DankorAL.gmail.com",
-        bio = "eyes"
+        bio = true
     )
 
     println()
@@ -27,6 +68,3 @@ fun main() {
     println()
     userDanila.userDataOutput()
 }
-
-
-
