@@ -34,7 +34,6 @@ class Ingredient(
 
     val name: String,
     val idOfIngredient: Int,
-    val totalAmountOfIngredient: Int,
 
 ) {
 
