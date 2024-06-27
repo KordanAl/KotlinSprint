@@ -1,16 +1,16 @@
 package org.example.lesson_11
 
-class ForumUser(
-    val userId: Int,
-    val userName: String,
-)
-
-class ForumMessage(
-    val authorId: Int,
-    val message: String,
-)
-
 class Forum {
+    class ForumUser(
+        val userId: Int,
+        val userName: String,
+    )
+
+    class ForumMessage(
+        val authorId: Int,
+        val message: String,
+    )
+
     companion object {
         private val users: MutableList<ForumUser> = mutableListOf()
         private val messages: MutableList<ForumMessage> = mutableListOf()
