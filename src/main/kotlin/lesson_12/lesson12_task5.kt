@@ -1,23 +1,19 @@
 package org.example.lesson_12
 
-const val KELVIN_TEMP = 273
+const val KELVIN_TEMPS2 = 273
 
 class Weather5(
-    _dayTemp: Int,
-    _nightTemp: Int,
-    _precipitation: Boolean,
-    _day: Int,
+    dayTemp: Int,
+    nightTemp: Int,
+    precipitation: Boolean,
+    day: Int,
 ) {
-    var dayTemp = _dayTemp
-    var nightTemp = _nightTemp
-    var precipitation = _precipitation
-    var day = _day
+    val dayTemp = dayTemp - KELVIN_TEMPS2
+    val nightTemp = nightTemp - KELVIN_TEMPS2
+    val hasPrecipitation = precipitation
+    val day = day
 
     init {
-        dayTemp = _dayTemp - KELVIN_TEMP
-        nightTemp = _nightTemp - KELVIN_TEMP
-        precipitation = _precipitation
-        day = _day
         printWeather5()
     }
 
@@ -25,39 +21,30 @@ class Weather5(
         println("Погода в $day день Июня: ")
         println("Дневная температура: $dayTemp°C")
         println("Ночная температура: $nightTemp°C")
-        println("Наличие осадков: $precipitation")
+        println("Наличие осадков: $hasPrecipitation")
         println()
     }
 }
 
 fun main() {
-    val weatherList = mutableListOf<Weather5>()
-    val dayTemps = mutableListOf<Int>()
-    val nightTemps = mutableListOf<Int>()
-    val daysWithPrecipitation = mutableListOf<Boolean>()
-
     val daysInMonth = 1..30
     val temperatureRange = 263..323
-    val boolean = 0..1
+    val presenceOfPrecipitation = 0..1
 
-    var dayTemp: Int
-    var nightTemp: Int
-    var precipitation: Boolean
+    val weatherList = daysInMonth.map { day ->
+        Weather5(
+            dayTemp = temperatureRange.random(),
+            nightTemp = temperatureRange.random(),
+            precipitation = presenceOfPrecipitation.random() == 1,
+            day = day
+        )
+    }.toMutableList()
 
-    for (day in daysInMonth) {
-        dayTemp = temperatureRange.random()
-        nightTemp = temperatureRange.random()
-        precipitation = boolean.random() == 1
+    val averageDayTemp = weatherList.map { it.dayTemp }.average().toInt()
+    val averageNightTemp = weatherList.map { it.nightTemp }.average().toInt()
+    val daysWithPrecipitationCount = weatherList.map { it.hasPrecipitation }.count { it }
 
-        dayTemps.add(dayTemp)
-        nightTemps.add(nightTemp)
-        daysWithPrecipitation.add(precipitation)
-        weatherList.add(Weather5(dayTemp, nightTemp, precipitation, day))
-    }
-
-    val averageTemp = ((dayTemps + nightTemps).average() - KELVIN_TEMP).toInt()
-    println("Средняя температура в Июне $averageTemp °C")
-
-    val trueCount = daysWithPrecipitation.count { it }
-    println("Дней с осадками в Июне: $trueCount")
+    println("Средняя дневная температура в Июне: ${averageDayTemp}°C")
+    println("Средняя ночная температура в Июне: ${averageNightTemp}°C")
+    println("Дней с осадками в Июне: $daysWithPrecipitationCount")
 }
