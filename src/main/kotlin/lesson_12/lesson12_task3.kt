@@ -1,16 +1,12 @@
 package org.example.lesson_12
 
-class Weather3(_dayTemp: Int, _nightTemp: Int, _precipitation: Boolean) {
+const val KELVIN_TEMPS = 273
 
-    var dayTemp = _dayTemp
-    var nightTemp = _nightTemp
-    var precipitation = _precipitation
+class Weather3(dayTemp: Int, nightTemp: Int, precipitation: Boolean) {
 
-    init {
-        dayTemp = _dayTemp - 273
-        nightTemp = _nightTemp - 273
-        precipitation = _precipitation
-    }
+    var dayTemp = dayTemp - KELVIN_TEMPS
+    var nightTemp = nightTemp - KELVIN_TEMPS
+    var precipitation = precipitation
 
     fun printWeather3() {
         println("Дневная температура: $dayTemp°C")
