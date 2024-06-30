@@ -1,17 +1,15 @@
 package org.example.lesson_12
 
-class Weather4(_dayTemp: Int, _nightTemp: Int, _precipitation: Boolean, _day: String) {
+const val KELVIN_TEMPS1 = 273
 
-    var dayTemp = _dayTemp
-    var nightTemp = _nightTemp
-    var precipitation = _precipitation
-    var day = _day
+class Weather4(dayTemp: Int, nightTemp: Int, precipitation: Boolean, day: String) {
+
+    val dayTemp = dayTemp - KELVIN_TEMPS1
+    val nightTemp = nightTemp - KELVIN_TEMPS1
+    val precipitation = precipitation
+    val day = day
 
     init {
-        dayTemp = _dayTemp - 273
-        nightTemp = _nightTemp - 273
-        precipitation = _precipitation
-        day = _day
         printWeather4()
     }
 
@@ -25,6 +23,6 @@ class Weather4(_dayTemp: Int, _nightTemp: Int, _precipitation: Boolean, _day: St
 
 fun main() {
 
-    val weather1 = Weather4(293, 285, false, "Понедельник")
+    val weather1 = Weather4(293, 285, false, "понедельник")
 
 }
