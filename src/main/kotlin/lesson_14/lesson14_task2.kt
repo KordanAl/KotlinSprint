@@ -19,8 +19,8 @@ open class Liner2(
         println("Скорость: $speed км/ч")
         println("Грузоподъемность: ${numberFormat.format(liftingCapacity)} кг")
         println("Вместимость экипажа: ${numberFormat.format(passengerCapacity)} человек")
-        println("Наличие ледокола: $crushIce")
         println("Способ погрузки: $loadingMethod")
+        if (crushIce) println("В наличии имеется: 'Ледокол' ")
         println()
     }
 }
