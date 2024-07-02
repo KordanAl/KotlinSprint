@@ -1,13 +1,16 @@
 package org.example.lesson_13
 
 class ContactPhone2(
-    private val name: String,
-    private val number: Long,
-    private val nameCompany: String? = null,
+    val name: String,
+    val number: Long,
+    val nameCompany: String? = null,
 ) {
-    init {
-        if (nameCompany != null) {
-            println(nameCompany)
+    companion object {
+        fun printUniqueCompanies(contacts: List<ContactPhone2>) {
+            contacts
+                .mapNotNull { it.nameCompany }
+                .distinct()
+                .forEach { println(it) }
         }
     }
 }
@@ -21,4 +24,5 @@ fun main() {
             ContactPhone2("Влад", 89123456788, "null"),
             ContactPhone2("Иван", 89112345678, "Google"),
         )
+    ContactPhone2.printUniqueCompanies(phoneBook)
 }
