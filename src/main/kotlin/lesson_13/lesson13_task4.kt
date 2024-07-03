@@ -1,42 +1,64 @@
 package org.example.lesson_13
 
+import java.util.*
+
 class ContactPhone3(
-    private val name: String,
-    private val number: Long,
-    private val nameCompany: String? = null,
+    val name: String,
+    val number: Long,
+    val nameCompany: String? = null,
 ) {
-    companion object {
-        fun fromInput(name: String, numberInput: String, nameCompany: String? = null): ContactPhone3? {
-            if (numberInput.isBlank()) {
-                println("Не введен номер для контакта '$name'.")
-                return null
-            }
+    override fun toString(): String = "Контакт: ($name, $number, $nameCompany)"
 
-            val number = numberInput.toLongOrNull()
-            return if (number != null) {
-                ContactPhone3(name, number, nameCompany)
-            } else {
-                println("Неверный номер для контакта '$name'.")
-                null
-            }
+    fun getContactInfo(): ContactPhone3? {
+        println("Введите имя контакта:")
+        val name = readln()
+
+        println("Введите номер контакта: ")
+        val number = readln().toLongOrNull()
+
+        if (number == null) {
+            println("Номер телефона не был введен или неверен. Контакт не будет добавлен.")
+            return null
         }
-    }
 
-    init {
-        println(toString())
-    }
+        println("Введите название компании: ")
+        val nameCompany = readln()
 
-    override fun toString(): String {
-        return "$name, $number, ${nameCompany ?: "null"}"
+        return ContactPhone3(name, number, nameCompany.ifBlank { null })
     }
 }
 
 fun main() {
-    val phoneBook = mutableListOf(
-        ContactPhone3.fromInput("Ростислав", "894552324", "Reddit"),
-        ContactPhone3.fromInput("Данила", "89231231231"),
-        ContactPhone3.fromInput("Ян", ""),
-        ContactPhone3.fromInput("Влад", "89456546546", "null"),
-        ContactPhone3.fromInput("Иван", "89112345678", "Google")
-    )
+    val contactList = mutableListOf<ContactPhone3>()
+
+    while (true) {
+        val contact = getContactInfo()
+        if (contact != null) {
+            contactList.add(contact)
+        }
+
+        println("Хотите добавить еще один контакт? (да/нет)")
+        val addNewContact = readln()
+        if (addNewContact.lowercase(Locale.getDefault()) == "нет") break
+    }
+    contactList.forEach { println(it) }
+}
+
+
+fun getContactInfo(): ContactPhone3? {
+    println("Введите имя контакта:")
+    val name = readln()
+
+    println("Введите номер контакта: ")
+    val number = readln().toLongOrNull()
+
+    if (number == null) {
+        println("Номер телефона не был введен или неверен. Контакт не будет добавлен.")
+        return null
+    }
+
+    println("Введите название компании: ")
+    val nameCompany = readln()
+
+    return ContactPhone3(name, number, nameCompany.ifBlank { null })
 }
