@@ -8,17 +8,18 @@ open class Liner(
     val speed: Int = 100,
     val liftingCapacity: Int = 1_000_000,
     val passengerCapacity: Int = 100_000,
-    val crushIce: Boolean = false
+    val crushIce: Boolean = false,
 ) {
     fun displayInformation() {
         val numberFormat = NumberFormat.getNumberInstance(Locale.forLanguageTag("ru"))
 
-        println("Информация о корабле: $name")
-        println("Скорость: $speed км/ч")
-        println("Грузоподъемность: ${numberFormat.format(liftingCapacity)} кг")
-        println("Вместимость экипажа: ${numberFormat.format(passengerCapacity)} человек")
-        println("Наличие ледокола: $crushIce")
-        println()
+        println(
+            "Информация о корабле: $name " +
+                    "\nСкорость: $speed км/ч " +
+                    "\nГрузоподъемность: ${numberFormat.format(liftingCapacity)} кг " +
+                    "\nВместимость экипажа: ${numberFormat.format(passengerCapacity)} человек " +
+                    "\nНаличие ледокола: $crushIce",
+        )
     }
 }
 
@@ -34,18 +35,11 @@ class Icebreaker(
     speed: Int = 40,
     liftingCapacity: Int = 1_000_000,
     passengerCapacity: Int = 25_000,
-    crushIce: Boolean = true
+    crushIce: Boolean = true,
 ) : Liner(name, speed, liftingCapacity, passengerCapacity, crushIce)
 
-
 fun main() {
-
     val liner = Liner()
     val cargo = Cargo()
     val iceBreaker = Icebreaker()
-
-    liner.displayInformation()
-    cargo.displayInformation()
-    iceBreaker.displayInformation()
-
 }
