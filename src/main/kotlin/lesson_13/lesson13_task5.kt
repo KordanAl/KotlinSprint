@@ -14,7 +14,7 @@ class ContactPhone4(
             try {
                 ContactPhone4(name, number.toLong(), nameCompany)
             } catch (e: NumberFormatException) {
-                println("Ошибка: ${e.message} для контакта '$name'.")
+                println("Ошибка: ${e::class.simpleName} для контакта '$name'.")
                 null
             }
     }
