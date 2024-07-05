@@ -24,9 +24,7 @@ class Satellite(
     name: String,
     atmosphere: Boolean = true,
     suitabilityForLanding: Boolean,
-) : CelestialBodies(name, atmosphere, suitabilityForLanding) {
-
-}
+) : CelestialBodies(name, atmosphere, suitabilityForLanding)
 
 fun main() {
 
