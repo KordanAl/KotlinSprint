@@ -2,22 +2,26 @@ package org.example.lesson_13
 
 class ContactPhone4(
     val name: String,
-    val number: String,
+    var number: String,
     val nameCompany: String? = null,
 ) {
     override fun toString(): String = "$name, $number, ${nameCompany ?: "не указано"}"
 }
 
-fun fromInput(name: String, number: String, nameCompany: String?): ContactPhone4 {
-    return try {
-        val num = number.toLong()
-        ContactPhone4(name, num.toString(), nameCompany)
+fun fromInput(contactNumber: String) {
+    try {
+        contactNumber.toLong()
+        println("Номер $contactNumber успешно сохранен!")
     } catch (e: Exception) {
-        ContactPhone4(name, "ошибка: ${e::class.simpleName}")
+        println("Ошибка: ${e::class.simpleName}")
     }
 }
 
 fun main() {
-    val contact = fromInput("Ян", "123ABC", "")
-    println(contact)
+    val contact = ContactPhone4("Ян", "123ABC", null)
+    val contact1 = ContactPhone4("Danila", "8913123123", "KotlinSprint")
+
+    fromInput(contact.number)
+    fromInput(contact1.number)
+
 }
