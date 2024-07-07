@@ -1,38 +1,15 @@
 package org.example.lesson_15
 
-abstract class UserForum(
-    val userName: String
-) {
-    abstract fun readForum()
-    abstract fun writeMessage(message: String)
+abstract class UserForum(val userName: String) {
+    fun readForum() = println("$userName читает форум.")
+    fun writeMessage(message: String) = println("$userName написал сообщение: $message")
 }
 
-class SimpleUser(userName: String) : UserForum(userName) {
-    override fun readForum() {
-        println("$userName читает форум.")
-    }
-
-    override fun writeMessage(message: String) {
-        println("$userName написал сообщение: $message")
-    }
-}
+class SimpleUser(userName: String) : UserForum(userName)
 
 class AdminUser(userName: String) : UserForum(userName) {
-    override fun readForum() {
-        println("$userName читает форум.")
-    }
-
-    override fun writeMessage(message: String) {
-        println("$userName написал сообщение: $message")
-    }
-
-    fun deleteMessage(message: String) {
-        println("$userName удалил сообщение: $message")
-    }
-
-    fun deleteUser(userName: String) {
-        println("${this.userName} удалил пользователя : $userName")
-    }
+    fun deleteMessage(message: String) = println("$userName удалил сообщение: $message")
+    fun deleteUser(userName: String) = println("${this.userName} удалил пользователя : $userName")
 }
 
 fun main() {
