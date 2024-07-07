@@ -22,7 +22,7 @@ interface CargoTransport {
 }
 
 class Truck(
-    private val truckNumber: Int,
+
 ) : Movable,
     PassengerTransport,
     CargoTransport {
@@ -32,30 +32,29 @@ class Truck(
     override var currentCargoWeight: Int = 0
 
     override fun move() {
-        println("Грузовик №$truckNumber движется")
+        println("Грузовик движется")
     }
 
     override fun loadPassengers(count: Int) {
-        println("Загружено $count пассажиров в грузовик №$truckNumber.")
+        println("Загружено $count пассажиров в грузовик.")
     }
 
     override fun unloadPassengers(count: Int) {
-        println("Разгружено $count пассажиров из грузовика №$truckNumber")
+        println("Разгружено $count пассажиров из грузовика.")
     }
 
     override fun loadCargo(weight: Int) {
-        println("Загружено $weight тонн груза в грузовик №$truckNumber")
+        println("Загружено $weight тонн груза в грузовик.")
     }
 
     override fun unloadCargo(weight: Int) {
-        println("Разгружено $weight тонн груза из грузовика №$truckNumber")
+        println("Разгружено $weight тонн груза из грузовика.")
     }
 }
 
 class Car(
     private val carNumber: Int,
-) : Movable,
-    PassengerTransport {
+) : Movable, PassengerTransport {
     override val maxPassengers: Int = 3
 
     override fun move() {
@@ -63,7 +62,7 @@ class Car(
     }
 
     override fun loadPassengers(count: Int) {
-        println("Загружено пассажиров в легковую машину №$carNumber :  $count")
+        println("Загружено $count пассажиров в легковую машину №$carNumber.")
     }
 
     override fun unloadPassengers(count: Int) {
@@ -73,51 +72,56 @@ class Car(
 
 fun main() {
     var passengerSize = 6
-    var cargoSize = 2
+    val cargoSize = 2
 
-    val truck = Truck(1)
+    val truck = Truck()
     val car1 = Car(1)
     val car2 = Car(2)
 
-    println("Необходимо перевести пассажиров: $passengerSize ")
-    println("Необходимо перевести тонн груза: $cargoSize ")
+    println("Необходимо перевезти пассажиров: $passengerSize")
+    println("Необходимо перевезти тонн груза: $cargoSize")
 
-    // Загрузка 2 тонн груза и 1 пассажира с движением и последующей разгрузкой
+    val (remainingPassengers, remainingCargo) = loadAndMoveCargoTransport(truck, passengerSize, cargoSize)
 
-    truck.maxCargoWeight.let {
-        val cargoToLoad = if (cargoSize >= it) it else cargoSize
-        truck.loadCargo(cargoToLoad)
-        cargoSize -= cargoToLoad
+    println("Осталось $remainingCargo тонн груза для перевозки")
+    println("Осталось $remainingPassengers пассажиров для перевозки \n")
 
-        val passengersToLoad = if (passengerSize >= truck.maxPassengers) truck.maxPassengers else passengerSize
-        truck.loadPassengers(passengersToLoad)
-        passengerSize -= passengersToLoad
-
-        truck.move()
-        truck.unloadCargo(cargoToLoad)
-        truck.unloadPassengers(passengersToLoad)
-    }
-
-    println("Осталость $cargoSize тонн груза для перевозки")
-    println("Осталость $passengerSize пассажиров для перевозки \n")
-
-    // Загрузка и разгрузка пассажиров в зависимости он их наличия с движением и разгрузкой
-
-    car1.maxPassengers.let {
-        val passengersToLoadCar = if (passengerSize >= it) it else passengerSize
-        car1.loadPassengers(passengersToLoadCar)
-        passengerSize -= passengersToLoadCar
-        car1.move()
-        car1.unloadPassengers(passengersToLoadCar)
-    }
+    passengerSize = loadAndMovePassengerTransport(car1, remainingPassengers)
     println("Осталось пассажиров для перевозки: $passengerSize")
 
-    car2.maxPassengers.let {
-        val passengersToLoadCar2 = if (passengerSize >= car2.maxPassengers) car2.maxPassengers else passengerSize
-        car2.loadPassengers(passengersToLoadCar2)
-        passengerSize -= passengersToLoadCar2
-        car2.unloadPassengers(passengersToLoadCar2)
-        car2.move()
-    }
+    passengerSize = loadAndMovePassengerTransport(car2, passengerSize)
     println("Осталось пассажиров для перевозки: $passengerSize")
+}
+
+fun loadAndMovePassengerTransport(car: Car, passengerSize: Int): Int {
+    val passengersToLoad = if (passengerSize >= car.maxPassengers) {
+        car.maxPassengers
+    } else {
+        passengerSize
+    }
+    car.loadPassengers(passengersToLoad)
+    car.move()
+    car.unloadPassengers(passengersToLoad)
+    return passengerSize - passengersToLoad
+}
+
+fun loadAndMoveCargoTransport(truck: Truck, passengerSize: Int, cargoSize: Int): Pair<Int, Int> {
+    val cargoToLoad = if (cargoSize >= truck.maxCargoWeight) {
+        truck.maxCargoWeight
+    } else {
+        cargoSize
+    }
+    truck.loadCargo(cargoToLoad)
+
+    val passengersToLoad = if (passengerSize >= truck.maxPassengers) {
+        truck.maxPassengers
+    } else {
+        passengerSize
+    }
+    truck.loadPassengers(passengersToLoad)
+    truck.move()
+    truck.unloadCargo(cargoToLoad)
+    truck.unloadPassengers(passengersToLoad)
+
+    return Pair(passengerSize - passengersToLoad, cargoSize - cargoToLoad)
 }
