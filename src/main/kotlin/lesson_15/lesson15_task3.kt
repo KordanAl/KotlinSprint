@@ -1,15 +1,26 @@
 package org.example.lesson_15
 
 abstract class UserForum(val userName: String) {
-    fun readForum() = println("$userName читает форум.")
-    fun writeMessage(message: String) = println("$userName написал сообщение: $message")
+    fun readForum() {
+        println("$userName читает форум.")
+    }
+
+    fun writeMessage(message: String) {
+        println("$userName написал сообщение: $message")
+    }
 }
 
 class SimpleUser(userName: String) : UserForum(userName)
 
 class AdminUser(userName: String) : UserForum(userName) {
-    fun deleteMessage(message: String) = println("$userName удалил сообщение: $message")
-    fun deleteUser(userName: String) = println("${this.userName} удалил пользователя : $userName")
+
+    fun deleteMessage(message: String) {
+        println("$userName удалил сообщение: $message")
+    }
+
+    fun deleteUser(userName: String) {
+        println("${this.userName} удалил пользователя : $userName")
+    }
 }
 
 fun main() {
