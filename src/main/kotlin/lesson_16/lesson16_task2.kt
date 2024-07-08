@@ -2,11 +2,9 @@ package org.example.lesson_16
 
 import kotlin.math.pow
 
-class Circle(private val radius: Double) {
+private const val PI: Double = 3.14
 
-    companion object {
-        private const val PI: Double = 3.14
-    }
+class Circle(private val radius: Double) {
 
     fun getAreaOfCircle(): Double = PI * radius.pow(2)
 
