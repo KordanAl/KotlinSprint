@@ -50,17 +50,19 @@ class Player(
     }
 }
 
+class Monster(val name: String, val damage: IntRange)
+
 fun main() {
     val player = Player("Danila", 100, 10_000)
+    val monster = Monster("Minotaur", 10..50)
 
-    val monsterDamage = 10..50
     val heroHealing = 10..50
 
-    println("The player: ${player.getName()} met a minotaur on his way and was noticed by the enemy, the battle begins!")
+    println("The player: ${player.getName()} met a ${monster.name} on his way and was noticed by the enemy, the battle begins!")
     player.currentHealth()
 
     while (!player.getDeathInfo()) {
-        player.getDamage(monsterDamage.random())
+        player.getDamage(monster.damage.random())
         Thread.sleep(1500)
 
         player.getHealing(heroHealing.random())
