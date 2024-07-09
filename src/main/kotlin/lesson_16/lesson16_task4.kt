@@ -1,5 +1,9 @@
 package org.example.lesson_16
 
+const val NEW_STATUS: String = "Completed"
+const val APPLICATION_ACCEPTED: String = "status approved"
+const val APPLICATION_NOT_ACCEPTED: String = "status rejected"
+
 class Order(
     private val orderNumber: Int,
     private var orderStatus: String,
@@ -10,7 +14,7 @@ class Order(
         newStatus: String,
         confirm: String,
     ) {
-        if (confirm == "status approved") orderStatus = newStatus
+        if (confirm == APPLICATION_ACCEPTED) orderStatus = newStatus
     }
 }
 
@@ -18,11 +22,10 @@ fun main() {
     val order1 = Order(1, "On the road")
     println(order1.getCurrentOrderStatus())
 
-    val newStatus = "Completed"
-    val applicationToTheManager = sendRequestToTheManager(newStatus, order1.getCurrentOrderStatus())
+    val applicationToTheManager = sendRequestToTheManager(NEW_STATUS, order1.getCurrentOrderStatus())
     println(applicationToTheManager)
 
-    order1.getNewOrderStatus(newStatus, applicationToTheManager)
+    order1.getNewOrderStatus(NEW_STATUS, applicationToTheManager)
     println(order1.getCurrentOrderStatus())
 }
 
@@ -42,9 +45,9 @@ fun sendRequestToTheManager(
 
     val managerDecision =
         if (manager == "yes") {
-            "status approved"
+            APPLICATION_ACCEPTED
         } else {
-            "status rejected"
+            APPLICATION_NOT_ACCEPTED
         }
     return managerDecision
 }
