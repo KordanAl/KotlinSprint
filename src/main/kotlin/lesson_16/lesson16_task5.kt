@@ -16,11 +16,12 @@ class Player(
     }
 
     fun getDamage(damage: Int) {
-        if (health - damage > 0) {
+        if ((health - damage > 0) && !death) {
             println("The player received $damage units of damage.")
             health -= damage
             currentHealth()
         } else {
+            println("The hero cannot take damage.")
             getDeath()
         }
     }
@@ -43,7 +44,7 @@ class Player(
     }
 
     private fun getDeath() {
-        println("The player take fatal damage!")
+        println("The player is dead!")
         health = 0
         hitPower = 0
         death = true
