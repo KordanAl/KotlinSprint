@@ -3,11 +3,11 @@ package org.example.lesson_17
 class Folder(
     private val _name: String,
     private var _numberOfFiles: Int,
-    private var security: Boolean = false,
+    private var isSecurity: Boolean = false,
 ) {
     val name: String
         get() =
-            if (security) {
+            if (isSecurity) {
                 "Hidden folder."
             } else {
                 _name
@@ -15,7 +15,7 @@ class Folder(
 
     val numberOfFiles: Int
         get() =
-            if (security) {
+            if (isSecurity) {
                 0
             } else {
                 _numberOfFiles
