@@ -29,7 +29,9 @@ fun main() {
 
     val animalList: List<Animal> = listOf(fox, dog, cat)
 
-    animalList.forEach { animal ->
-        println(animal.eat())
-    }
+    showAllAnimal(animalList)
+}
+
+fun showAllAnimal(animals: List<Animal>) {
+    animals.forEach { println(it.eat()) }
 }
