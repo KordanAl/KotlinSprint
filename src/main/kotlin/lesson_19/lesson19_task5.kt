@@ -33,10 +33,12 @@ fun main() {
         println("Введите данные человека (${humanList.size + 1}/$MAXIMUM_INPUT):")
         humanInput = readln()
         if (humanInput.contains(",")) {
-            val parts = humanInput.split(",")
-            if (parts.size == 2) {
-                val name = parts[0].trim().replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
-                val genderInput = parts[1].trim().uppercase()
+            val pairOfValues = humanInput.split(",")
+            if (pairOfValues.size == 2) {
+                val name = pairOfValues[0].trim().replaceFirstChar {
+                    if (it.isLowerCase()) it.titlecase() else it.toString()
+                }
+                val genderInput = pairOfValues[1].trim().uppercase()
 
                 val gender = when (genderInput) {
                     "МУЖСКОЙ" -> Gender.MALE
