@@ -1,36 +1,40 @@
 package org.example.lesson_18
 
-open class Animal() {
-    open fun eat(): String = ""
+abstract class Animal(val name: String) {
+    abstract fun eat(): String
+    fun sleep(): String = "$name -> sleeps"
 }
 
-class Fox(private val name: String, private val food: String) : Animal() {
+class Fox(name: String) : Animal(name) {
     override fun eat(): String {
-        return "$name -> eats $food"
+        return "$name -> eats berries"
     }
 }
 
-class Dog(private val name: String, private val food: String) : Animal() {
+class Dog(name: String) : Animal(name) {
     override fun eat(): String {
-        return "$name -> eats $food"
+        return "$name -> eats bones"
     }
 }
 
-class Cat(private val name: String, private val food: String) : Animal() {
+class Cat(name: String) : Animal(name) {
     override fun eat(): String {
-        return "$name -> eats $food"
+        return "$name -> eats fish"
     }
 }
 
 fun main() {
-    val fox: Animal = Fox("Foxy", "berries")
-    val dog: Animal = Dog("Baby", "bones")
-    val cat: Animal = Cat("Shukaku", "fish")
+    val fox: Animal = Fox("Foxy")
+    val dog: Animal = Dog("Baby")
+    val cat: Animal = Cat("Shukaku")
 
     val animalList: List<Animal> = listOf(fox, dog, cat)
-    showAllAnimal(animalList)
+    showAllAnimals(animalList)
 }
 
-fun showAllAnimal(animals: List<Animal>) {
-    animals.forEach { println(it.eat()) }
+fun showAllAnimals(animals: List<Animal>) {
+    animals.forEach {
+        println(it.eat())
+        println(it.sleep())
+    }
 }
