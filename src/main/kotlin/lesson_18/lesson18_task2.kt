@@ -1,38 +1,27 @@
 package org.example.lesson_18
 
-open class TypesOfDice {
+open class Dice(private val sides: Int) {
 
-    open fun rollTheDice(): String = ""
-}
-
-class Dice4(private val number: IntRange = 1..4) : TypesOfDice() {
-    override fun rollTheDice(): String {
-        return "The result of throwing a 4-sided die is the following: ${number.random()}"
+    open fun rollTheDice() {
+        val result = (1..sides).random()
+        println("The result of throwing a $sides-sided die is the following: $result")
     }
 }
 
-class Dice6(private val number: IntRange = 1..6) : TypesOfDice() {
-    override fun rollTheDice(): String {
-        return "The result of throwing a 6-sided die is the following: ${number.random()}"
-    }
-}
-
-class Dice8(private val number: IntRange = 1..8) : TypesOfDice() {
-    override fun rollTheDice(): String {
-        return "The result of throwing a 8-sided die is the following: ${number.random()}"
-    }
-}
+class FourSidedDice() : Dice(4)
+class SixSidedDice() : Dice(6)
+class EightSidedDice() : Dice(8)
 
 fun main() {
 
-    val dice: TypesOfDice = Dice4()
-    val dice2: TypesOfDice = Dice6()
-    val dice3: TypesOfDice = Dice8()
+    val dice: Dice = FourSidedDice()
+    val dice2: Dice = SixSidedDice()
+    val dice3: Dice = EightSidedDice()
 
-    val arrayOfDice = arrayOf<TypesOfDice>(dice, dice2, dice3)
+    val arrayOfDice = arrayOf<Dice>(dice, dice2, dice3)
     showRollAllDice(arrayOfDice)
 }
 
-fun showRollAllDice(dice: Array<TypesOfDice>) {
-    dice.forEach { println(it.rollTheDice()) }
+fun showRollAllDice(dice: Array<Dice>) {
+    dice.forEach { it.rollTheDice() }
 }
