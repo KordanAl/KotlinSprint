@@ -28,7 +28,6 @@ fun main() {
     val cat: Animal = Cat("Shukaku", "fish")
 
     val animalList: List<Animal> = listOf(fox, dog, cat)
-
     showAllAnimal(animalList)
 }
 
