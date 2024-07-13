@@ -2,8 +2,8 @@ package org.example.lesson_18
 
 import kotlin.math.pow
 
-open class Boxes() {
-    open fun getSurfaceArea() = ""
+abstract class Box() {
+    abstract fun getSurfaceArea(): String
 }
 
 class Rectangle(
@@ -11,7 +11,7 @@ class Rectangle(
     private val length: Double,
     private val width: Double,
     private val height: Double,
-) : Boxes() {
+) : Box() {
     companion object {
         private const val PAIR_OF_OPPOSITE_FACES = 2
     }
@@ -26,7 +26,7 @@ class Rectangle(
 class Cube(
     private val id: Int,
     private val ribLength: Double,
-) : Boxes() {
+) : Box() {
     companion object {
         private const val CUBE_FACES: Byte = 6
     }
@@ -39,13 +39,13 @@ class Cube(
 
 fun main() {
 
-    val box1: Boxes = Rectangle(1, 16.0, 6.0, 8.0)
-    val box2: Boxes = Cube(2, 4.0)
+    val box1: Box = Rectangle(1, 16.0, 6.0, 8.0)
+    val box2: Box = Cube(2, 4.0)
 
-    val listBoxes = listOf<Boxes>(box1, box2)
+    val listBoxes = listOf<Box>(box1, box2)
     showTheAreaOfAllBoxes(listBoxes)
 }
 
-fun showTheAreaOfAllBoxes(listBoxes: List<Boxes>) {
+fun showTheAreaOfAllBoxes(listBoxes: List<Box>) {
     listBoxes.forEach { println(it.getSurfaceArea()) }
 }
