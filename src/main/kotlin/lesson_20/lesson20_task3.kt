@@ -3,21 +3,21 @@ package org.example.lesson_20
 class Player1 {
 
     private var presenceOfAKey: Boolean = false
-    private val goodLuckSearching: IntRange = 0..2
-
+    private val goodLuckSearching: IntRange = 0..3
+    private var boxNumber = 1
     fun getInfoPresenceOfAKey() = presenceOfAKey
 
     fun runSearchKey() {
         println("Игрок начал поиск ключа...")
 
-        for (i in 1..100) {
-            if (goodLuckSearching.random() == 0) {
-                println("Открыл сундук №: $i, увы ключ не найден")
+        while (!presenceOfAKey) {
+            if (goodLuckSearching.random() != 0) {
+                println("Открыл сундук №: $boxNumber, увы ключ не найден!")
                 Thread.sleep(1000)
+                boxNumber++
             } else {
                 presenceOfAKey = true
-                println("Открыл сундук №: $i, удача сегодня на его стороне, ключ найден!")
-                break
+                println("Открыл сундук №: $boxNumber, удача сегодня на его стороне, ключ найден!")
             }
         }
 
