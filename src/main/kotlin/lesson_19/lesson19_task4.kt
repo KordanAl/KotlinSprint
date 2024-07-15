@@ -14,7 +14,7 @@ class Tank(private val name: String) {
         if (currentTypePatron != null) {
             println("$name произвел выстрел и нанес врагу ${currentTypePatron?.damage} урона")
             currentTypePatron = null
-            println("$name - орудие разряжено!")
+            println("$name - орудие разряжено!\n")
         } else {
             println("$name - орудие не заряжено!\n")
         }
@@ -37,7 +37,6 @@ fun main() {
     for (patron in patrons) {
         tank.loadPatron(patron)
         tank.takeShot()
-        println()
         Thread.sleep(1000)
     }
 }
