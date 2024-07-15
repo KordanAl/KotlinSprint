@@ -1,17 +1,9 @@
 package org.example.lesson_19
 
-enum class TypePatron(val damage: Int) {
-    BLUE(5),
-    GREEN(10),
-    RED(20);
-
-    fun getNameTypePatron(): String {
-        return when (this) {
-            BLUE -> "Синий"
-            GREEN -> "Зеленый"
-            RED -> "Красный"
-        }
-    }
+enum class TypePatron(val damage: Int, val patronName: String) {
+    BLUE(5, "Синий"),
+    GREEN(10, "Зеленый"),
+    RED(20, "Красный"),
 }
 
 class Tank(private val name: String) {
@@ -30,7 +22,7 @@ class Tank(private val name: String) {
 
     fun loadPatron(patron: TypePatron) {
         currentTypePatron = patron
-        println("$name заряжен патронами типа: ${patron.getNameTypePatron()}")
+        println("$name заряжен патронами типа: ${patron.patronName}")
     }
 }
 
