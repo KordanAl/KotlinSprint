@@ -1,17 +1,9 @@
 package org.example.lesson_19
 
-enum class TypePatron {
-    BLUE,
-    GREEN,
-    RED;
-
-    fun getDamageTypePatron(): Int {
-        return when (this) {
-            BLUE -> 5
-            GREEN -> 10
-            RED -> 20
-        }
-    }
+enum class TypePatron(val damage: Int) {
+    BLUE(5),
+    GREEN(10),
+    RED(20);
 
     fun getNameTypePatron(): String {
         return when (this) {
@@ -24,12 +16,21 @@ enum class TypePatron {
 
 class Tank(private val name: String) {
 
-    fun takeShot(patron: TypePatron) {
-        println("$name произвел выстрел и нанес врагу ${patron.getDamageTypePatron()} урона")
+    private var currentTypePatron: TypePatron? = null
+
+    fun takeShot() {
+        if (currentTypePatron != null) {
+            println("$name произвел выстрел и нанес врагу ${currentTypePatron?.damage} урона")
+            currentTypePatron = null
+            println("$name - орудие разряжено!")
+        } else {
+            println("$name - орудие не заряжено!\n")
+        }
     }
 
-    fun runLoadNewPatron(patron: TypePatron) {
-        println("$name воорудил орудие типом патронов: ${patron.getNameTypePatron()}")
+    fun loadPatron(patron: TypePatron) {
+        currentTypePatron = patron
+        println("$name заряжен патронами типа: ${patron.getNameTypePatron()}")
     }
 }
 
@@ -39,10 +40,12 @@ fun main() {
 
     val patrons = listOf(TypePatron.BLUE, TypePatron.GREEN, TypePatron.RED)
 
-    for (patron in patrons) {
-        tank.runLoadNewPatron(patron)
-        tank.takeShot(patron)
-        Thread.sleep(1000)
+    tank.takeShot()
 
+    for (patron in patrons) {
+        tank.loadPatron(patron)
+        tank.takeShot()
+        println()
+        Thread.sleep(1000)
     }
 }
