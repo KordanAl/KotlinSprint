@@ -5,7 +5,10 @@ data class GalacticGuide(
     val description: String,
     val eventDateTime: String,
     val distanceFromEarth: Double,
-)
+) {
+    fun getDataGalacticGuide(): GalacticGuide = GalacticGuide(name, description, eventDateTime, distanceFromEarth)
+
+}
 
 fun main() {
     val alphaCentauri = GalacticGuide(
@@ -15,7 +18,7 @@ fun main() {
         distanceFromEarth = 4.367
     )
 
-    val (name, description, eventDateTime, distanceFromEarth) = alphaCentauri
+    val (name, description, eventDateTime, distanceFromEarth) = alphaCentauri.getDataGalacticGuide()
 
     println("Название: $name")
     println("Описание: $description")
