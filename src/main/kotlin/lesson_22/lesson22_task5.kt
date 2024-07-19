@@ -5,10 +5,7 @@ data class GalacticGuide(
     val description: String,
     val eventDateTime: String,
     val distanceFromEarth: Double,
-) {
-    fun getDataGalacticGuide(): GalacticGuide = GalacticGuide(name, description, eventDateTime, distanceFromEarth)
-
-}
+)
 
 fun main() {
     val alphaCentauri = GalacticGuide(
@@ -18,11 +15,9 @@ fun main() {
         distanceFromEarth = 4.367
     )
 
-    val (name, description, eventDateTime, distanceFromEarth) = alphaCentauri.getDataGalacticGuide()
-
-    println("Название: $name")
-    println("Описание: $description")
-    println("Дата и время события: $eventDateTime")
-    println("Расстояние до земли: $distanceFromEarth световых лет")
+    println("Название: ${alphaCentauri.component1()}")
+    println("Описание: ${alphaCentauri.component2()}")
+    println("Дата и время события: ${alphaCentauri.component3()}")
+    println("Расстояние до земли: ${alphaCentauri.component4()} световых лет")
 }
 
